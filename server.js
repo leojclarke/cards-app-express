@@ -46,16 +46,20 @@ let cards = [
   }
 });*/
 
-app.get('/cards', (req, res) => {
-  fs.readFile(__dirname + '/cards.json', (err, data) => {
-    // get data from the file cards.json
-    if (err) {
-      console.log(err); // if an error occurs, log err
-    } else {
-      res.json(JSON.parse(data)); // else, return the json stream and convert it to a js object
-    }
+getCards();
+
+function getCards() {
+  app.get('/cards', (req, res) => {
+    fs.readFile(__dirname + '/cards.json', (err, data) => {
+      // get data from the file cards.json
+      if (err) {
+        console.log(err); // if an error occurs, log err
+      } else {
+        res.json(JSON.parse(data)); // else, return the json stream and convert it to a js object
+      }
+    });
   });
-});
+}
 
 app.get('/cards/:id', (req, res) => {
   fs.readFile(__dirname + '/cards.json', (err, data) => {
